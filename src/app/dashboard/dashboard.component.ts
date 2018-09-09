@@ -134,7 +134,7 @@ export class DashboardComponent implements OnInit {
           this.bullyEvents.push(newEvent);
         });
         this.classroomScore = this.computeClassroomScore();
-        this.recentEvents = this.bullyEvents.slice(this.bullyEvents.length - 11, this.bullyEvents.length - 1);
+        this.recentEvents = this.bullyEvents.slice(this.bullyEvents.length - 11, this.bullyEvents.length - 1).reverse();
 
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
@@ -235,7 +235,7 @@ export class DashboardComponent implements OnInit {
         if (newEvents.length !== this.bullyEvents.length) {
         this.bullyEvents = newEvents;
         this.classroomScore = this.computeClassroomScore();
-        this.recentEvents = this.bullyEvents.slice(this.bullyEvents.length - 11, this.bullyEvents.length - 1);
+        this.recentEvents = this.bullyEvents.slice(this.bullyEvents.length - 11, this.bullyEvents.length - 1).reverse();
         }
         console.log('update');
         this.loopToUpdateTable();
