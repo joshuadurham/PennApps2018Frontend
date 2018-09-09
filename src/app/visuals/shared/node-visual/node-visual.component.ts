@@ -26,7 +26,6 @@ export class NodeVisualComponent {
   @Input('nodeVisual') node: Node;
 
   centerNode() {
-    console.log('visual');
     this.node.fx = 0;
     this.node.fy = 0;
   }

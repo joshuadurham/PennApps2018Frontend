@@ -32,8 +32,6 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     /** Receiving an initialized simulated graph from our custom d3 service */
-    console.log('links');
-    console.log(this.links);
     this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
 
     /** Binding change detection check on each tick
@@ -57,7 +55,4 @@ export class GraphComponent implements OnInit, AfterViewInit {
     };
   }
 
-  centerNode(event) {
-    console.log(event);
-  }
 }

@@ -39,7 +39,6 @@ export class TableListComponent implements OnInit {
         const newEvent: BullyEvent = new BullyEvent();
         newEvent.bully = element.bully;
         newEvent.datetime = element.datetime;
-        console.log(newEvent.datetime);
         newEvent.date = new Date(newEvent.datetime / 1000).toLocaleTimeString();
         newEvent.location = element.location;
         newEvent.statement = element.statement;
@@ -49,8 +48,7 @@ export class TableListComponent implements OnInit {
         this.classroomScore = 300;
 
       });
-      console.log(this.bullyEvents.slice(this.bullyEvents.length - 10, this.bullyEvents.length - 1));
-      this.recentEvents = this.bullyEvents.slice(this.bullyEvents.length - 100, this.bullyEvents.length - 1);
+      this.recentEvents = this.bullyEvents.slice(0, 100);
     });
   }
 

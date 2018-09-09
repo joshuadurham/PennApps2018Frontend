@@ -43,9 +43,10 @@ export class ClassroomComponent implements OnInit {
           newEvent.victim = element.victim;
           this.bullyEvents.push(newEvent);
           const bully = this.students.find((elem) => elem.firstName === newEvent.bully);
-          bully.incidents = bully.incidents + 1;
+          if(bully) {
+            bully.incidents = bully.incidents + 1;
+          }
         });
-        console.log(this.bullyEvents.slice(this.bullyEvents.length - 10, this.bullyEvents.length - 1));
       });
     });
     

@@ -92,7 +92,6 @@ export class DashboardComponent implements OnInit {
     let day7 = day6 - (24 * 60 * 60 * 1000);
 
     let todaysEvents = this.bullyEvents.filter((event) => event.datetime > Date.now() - (24 * 60 * 60 * 1000));
-    console.log(todaysEvents);
     let day1Events = this.bullyEvents.filter((event) => event.datetime > day2 && event.datetime < day1);
     let day2Events = this.bullyEvents.filter((event) => event.datetime > day3 && event.datetime < day2);
     let day3Events = this.bullyEvents.filter((event) => event.datetime > day4 && event.datetime < day3);
@@ -134,7 +133,7 @@ export class DashboardComponent implements OnInit {
           this.bullyEvents.push(newEvent);
         });
         this.classroomScore = this.computeClassroomScore();
-        this.recentEvents = this.bullyEvents.slice(this.bullyEvents.length - 11, this.bullyEvents.length - 1).reverse();
+        this.recentEvents = this.bullyEvents.slice(0, 10);
 
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
@@ -235,9 +234,8 @@ export class DashboardComponent implements OnInit {
         if (newEvents.length !== this.bullyEvents.length) {
         this.bullyEvents = newEvents;
         this.classroomScore = this.computeClassroomScore();
-        this.recentEvents = this.bullyEvents.slice(this.bullyEvents.length - 11, this.bullyEvents.length - 1).reverse();
+        this.recentEvents = this.bullyEvents.slice(0, 10);
         }
-        console.log('update');
         this.loopToUpdateTable();
     })
   }

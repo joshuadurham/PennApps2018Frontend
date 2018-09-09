@@ -105,12 +105,10 @@ export class AnalysisComponent implements OnInit {
           sexismCounter = sexismCounter - event.intensity;
         }
       });
-      console.log(sexismCounter);
       sexismCounter = Math.sqrt(Math.abs(sexismCounter));
       this.sexism.push({name: student.student.firstName, value: sexismCounter});
     })
     this.sexism = this.sexism.sort((a, b) => b.value - a.value);
-    console.log(this.sexism);
   }
 
   someNodeSelected() {
