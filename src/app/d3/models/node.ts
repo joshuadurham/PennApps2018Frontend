@@ -1,17 +1,23 @@
 import APP_CONFIG from '../../app.config';
+import { Student } from '../../student';
+import { rgb } from 'd3';
 
 export class Node implements d3.SimulationNodeDatum {
   // optional - defining optional implementation properties - required for relevant typing assistance
   index?: number;
+  name?: string;
   x?: number;
   y?: number;
   vx?: number;
   vy?: number;
   fx?: number | null;
   fy?: number | null;
+  student?: Student;
+  totalToxicity?: number;
+  isSelected ? = false;
 
   id: string;
-  linkCount: number = 0;
+  linkCount= 0;
 
   constructor(id) {
     this.id = id;
@@ -19,19 +25,20 @@ export class Node implements d3.SimulationNodeDatum {
 
   // TODO: TOXICITY
   normal = () => {
-    return Math.sqrt(this.linkCount / APP_CONFIG.N);
+    //let result = Math.sqrt(this.totalToxicity + 1);
+    let result = 5 * (this.student.incidents ** 1.25 / this.totalToxicity);
+    return result;
   }
 
   get r() {
-    return 50 * this.normal() + 10;
+    return Math.sqrt(50 * this.normal() * this.normal()) + 10;
   }
 
   get fontSize() {
-    return (30 * this.normal() + 10) + 'px';
+    return Math.sqrt(30 * this.normal() + 10) + 'px';
   }
 
   get color() {
-    let index = Math.floor(APP_CONFIG.SPECTRUM.length * this.normal());
-    return APP_CONFIG.SPECTRUM[index];
+    return rgb(255 - (45 * this.normal()),0,0);
   }
 }

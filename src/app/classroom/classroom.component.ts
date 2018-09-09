@@ -31,23 +31,24 @@ export class ClassroomComponent implements OnInit {
         this.students.push(newStudent);
       });
       this.students = this.students.sort((a, b) => a.lastName.localeCompare(b.lastName));
-    });
-    this.dataService.getBullyingEvents().subscribe(result => {
-      this.bullyEvents = [];
-      (<Array<any>>result).forEach(element => {
-        const newEvent: BullyEvent = new BullyEvent();
-        newEvent.bully = element.bully;
-        newEvent.datetime = element.datetime;
-        newEvent.location = element.location;
-        newEvent.statement = element.statement;
-        newEvent.toxicity = element.toxicity;
-        newEvent.victim = element.victim;
-        this.bullyEvents.push(newEvent);
-        const bully = this.students.find((elem) => elem.firstName === newEvent.bully);
-        bully.incidents = bully.incidents + 1;
+      this.dataService.getBullyingEvents().subscribe(result2 => {
+        this.bullyEvents = [];
+        (<Array<any>>result2).forEach(element => {
+          const newEvent: BullyEvent = new BullyEvent();
+          newEvent.bully = element.bully;
+          newEvent.datetime = element.datetime;
+          newEvent.location = element.location;
+          newEvent.statement = element.statement;
+          newEvent.toxicity = element.toxicity;
+          newEvent.victim = element.victim;
+          this.bullyEvents.push(newEvent);
+          const bully = this.students.find((elem) => elem.firstName === newEvent.bully);
+          bully.incidents = bully.incidents + 1;
+        });
+        console.log(this.bullyEvents.slice(this.bullyEvents.length - 10, this.bullyEvents.length - 1));
       });
-      console.log(this.bullyEvents.slice(this.bullyEvents.length - 10, this.bullyEvents.length - 1));
     });
+    
   }
 
 }

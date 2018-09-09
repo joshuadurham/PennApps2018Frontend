@@ -36,19 +36,19 @@ export class D3Service {
       if (!d3.event.active) {
         graph.simulation.alphaTarget(0.3).restart();
       }
-
       d3.event.on('drag', dragged).on('end', ended);
 
       function dragged() {
         node.fx = d3.event.x;
         node.fy = d3.event.y;
+        node.isSelected = true;
       }
 
       function ended() {
         if (!d3.event.active) {
           graph.simulation.alphaTarget(0);
         }
-
+        node.isSelected = false;
         node.fx = null;
         node.fy = null;
       }
@@ -57,6 +57,7 @@ export class D3Service {
     d3element.call(d3.drag()
       .on('start', started));
   }
+
 
   /** The interactable graph we will simulate in this article
   * This method does not interact with the document, purely physical calculations with d3

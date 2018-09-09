@@ -8,8 +8,15 @@ export class Link implements d3.SimulationLinkDatum<Node> {
   source: Node | string | number;
   target: Node | string | number;
 
+  intensity: number = 0;
+  thickness: number = 0;
+
   constructor(source, target) {
     this.source = source;
     this.target = target;
+  }
+
+  updateThickness() {
+    this.thickness = Math.sqrt(this.intensity);
   }
 }

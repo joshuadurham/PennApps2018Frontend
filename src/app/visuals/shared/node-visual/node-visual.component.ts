@@ -4,18 +4,19 @@ import { Node } from '../../../d3';
 @Component({
   selector: '[nodeVisual]',
   template: `
-    <svg:g [attr.transform]="'translate(' + node.x + ',' + node.y + ')'">
+    <svg:g [attr.transform]="'translate(' + node.x + ',' + node.y + ')'" (onClick)="centerNode()">
       <svg:circle
           class="node"
           [attr.fill]="node.color"
           cx="0"
           cy="0"
-          [attr.r]="node.r">
+          [attr.r]="node.r"
+          (onClick)="centerNode()">
       </svg:circle>
       <svg:text
           class="node-name"
           [attr.font-size]="node.fontSize">
-        {{node.id}}
+        {{node.name}}
       </svg:text>
     </svg:g>
   `,
@@ -23,4 +24,10 @@ import { Node } from '../../../d3';
 })
 export class NodeVisualComponent {
   @Input('nodeVisual') node: Node;
+
+  centerNode() {
+    console.log('visual');
+    this.node.fx = 0;
+    this.node.fy = 0;
+  }
 }

@@ -7,7 +7,7 @@ import { D3Service, ForceDirectedGraph, Node } from '../../d3';
   template: `
     <svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
       <g [zoomableOf]="svg">
-        <g [linkVisual]="link" *ngFor="let link of links"></g>
+        <g [linkVisual]="link" *ngFor="let link of links" (onClick)="centerNode($event)"></g>
         <g [nodeVisual]="node" *ngFor="let node of nodes"
             [draggableNode]="node" [draggableInGraph]="graph"></g>
       </g>
@@ -19,6 +19,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
   @Input('nodes') nodes;
   @Input('links') links;
   graph: ForceDirectedGraph;
+  selectedNode: Node;
   private _options: { width, height } = { width: 800, height: 600 };
 
   @HostListener('window:resize', ['$event'])
@@ -31,6 +32,8 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     /** Receiving an initialized simulated graph from our custom d3 service */
+    console.log('links');
+    console.log(this.links);
     this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
 
     /** Binding change detection check on each tick
@@ -52,5 +55,9 @@ export class GraphComponent implements OnInit, AfterViewInit {
       width: window.innerWidth,
       height: window.innerHeight
     };
+  }
+
+  centerNode(event) {
+    console.log(event);
   }
 }

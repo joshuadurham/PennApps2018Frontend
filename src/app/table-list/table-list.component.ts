@@ -50,7 +50,7 @@ export class TableListComponent implements OnInit {
 
       });
       console.log(this.bullyEvents.slice(this.bullyEvents.length - 10, this.bullyEvents.length - 1));
-      this.recentEvents = this.bullyEvents.slice(this.bullyEvents.length - 10, this.bullyEvents.length - 1);
+      this.recentEvents = this.bullyEvents.slice(this.bullyEvents.length - 100, this.bullyEvents.length - 1);
     });
   }
 
