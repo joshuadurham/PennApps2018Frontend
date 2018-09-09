@@ -4,4 +4,5 @@ export class Student {
     gender: string;
     race: string;
     dateOfBirth: string;
+    incidents = 0;
 }

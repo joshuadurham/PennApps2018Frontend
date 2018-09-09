@@ -4,6 +4,6 @@ export class BullyEvent {
     toxicity: number;
     statement: string;
     location: string;
-    datetime: Date;
-    bystanders: string[];
+    datetime: number;
+    date: string;
 }
